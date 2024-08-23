@@ -3,6 +3,7 @@ package com.springboot.jpa.springboot_jpa.entities;
 import jakarta.persistence.*;
 
 
+
 @Entity
 @Table(name="persons")
 public class Person {
@@ -14,6 +15,8 @@ public class Person {
     private String lastname;
     @Column(name = "programming_language")
     private String programmingLanguage;
+    @Embedded
+    private Audit audit = new Audit();
 
 
     public Person() {
@@ -30,6 +33,8 @@ public class Person {
         this.lastname = lastname;
         this.programmingLanguage = programmingLanguage;
     }
+
+
 
 
     public Long getId() {
@@ -71,6 +76,8 @@ public class Person {
                 ", name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", programmingLanguage='" + programmingLanguage + '\'' +
+                ", createAt='" + audit.getCreateAt() + '\'' +
+                ", updated='" + audit.getUpdateAt() + '\'' +
                 '}';
     }
 }
